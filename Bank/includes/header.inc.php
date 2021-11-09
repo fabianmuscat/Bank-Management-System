@@ -7,10 +7,10 @@
     <title>Bank</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../styles/bootstrap/bootstrap.css">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/common.css">
 </head>
 

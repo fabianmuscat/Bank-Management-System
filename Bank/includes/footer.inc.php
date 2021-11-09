@@ -3,3 +3,5 @@
         <span class="text-light">Copyright &copy; 2021</span>
     </div>
 </footer>
+
+<script src="../js/bootstrap.bundle.js"></script>
