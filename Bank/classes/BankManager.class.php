@@ -2,6 +2,26 @@
 
 class BankManager extends DatabaseConnection
 {
+    private function capitalize(string $value): string {
+        $firstLetter = strtoupper($value[0]) ;
+        return $firstLetter . substr($value, 1);
+    }
+    
+    public function getTownId(string $town): ?int {
+        $query = "SELECT id FROM towns WHERE town = '$town';";
+        $result = $this->mysqli->query($query);
+        $town = $this->capitalize($town);
+        
+        if ($result->num_rows < 1) {
+            $this->mysqli->query("INSERT INTO towns (town) VALUES ('$town')");
+            
+            $query = "SELECT id FROM towns WHERE town = '$town';";
+            $result = $this->mysqli->query($query);
+        }
+        
+        return $result->fetch_row()[0];
+    }
+    
     public function getTownById(int $id): ?string
     {
         $query = "SELECT * FROM towns WHERE id = $id;";
@@ -26,5 +46,25 @@ class BankManager extends DatabaseConnection
             }
         }
         return $users;
+    }
+    
+    public function addUser(User $user): bool {
+        $eId = $user->get_eId();
+        $name = $user->getName();
+        $surname = $user->getSurname();
+        $telephone = $user->getTelephone();
+        $street = $user->getStreetName();
+        $house = $user->getHouse();
+        $postCode = $user->getPostCode();
+        $townId = $this->getTownId($user->getTown());
+        
+        $this->mysqli->query("INSERT INTO users (eId, name, surname, telephone, streetName, house, postCode, townId) VALUES ('$eId', '$name', '$surname', '$telephone', '$street', '$house', '$postCode', $townId)");
+        $rowsAdded = $this->mysqli->affected_rows;
+        if ($rowsAdded < 1) return false;
+        return true;
+    }
+    
+    private function encrypt(string $password): string {
+        return "";
     }
 }

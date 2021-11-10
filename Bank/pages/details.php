@@ -9,7 +9,9 @@
     <div class="container my-3 col-8 offset-2">
         <div class="alert alert-primary">
             <h3 class="alert-heading">
-                <?php echo $db->connect(); ?>
+                <?php echo $db->connect(); 
+                $db->addUser(new User("3", "333075M", "Shaun", "Cardona", "79793626", "Triq ta Gawhar", "Hoopoe Flat 1", "SFI1511", "birzebbuga"));
+                ?>
             </h3>
         </div>
 

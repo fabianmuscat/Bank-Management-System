@@ -7,6 +7,7 @@ class BankAccount
     private int $accountNumber;
     private float $balance;
     private User $person;
+    private string $password;
 
     public function getAccountNumber(): int
     {
@@ -24,29 +25,18 @@ class BankAccount
         return $this->person;
     }
     
-    public function __construct(string $id, string $name, string $surname, string $telephone, int $accountNumber, float $balance) 
+    public function getPassword(): string {
+        return $this->password;
+}
+    
+    public function __construct(int $accountNumber, float $balance, string $password, User $user) 
     {
-        $this->person = new User($id, $name, $surname, $telephone);
+        $this->person = $user;
         $this->accountNumber = $accountNumber;
         $this->balance = $balance;
+        $this->password = $password;
     }
     
-    public function deposit(float $amount): bool 
-    {
-        if ($amount <= 0) return false;
-        
-        $this->balance += $amount;
-        return true;
-    }
-    
-    
-    public function withdraw(float $amount): bool 
-    {
-        if ($this->balance - $amount <= 0) return false;
-        
-        $this->balance -= $amount;
-        return true;
-    }
 }
 
 ?>

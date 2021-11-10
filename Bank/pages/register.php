@@ -1,5 +1,13 @@
 <?php include "../includes/header.inc.php"; ?>
 
+<style>
+    input[type="number"] {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        margin: 0;
+    }
+</style>
+
 <body>
     <?php include "../includes/navbar.inc.php"; ?>
     
@@ -23,8 +31,10 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingTelephone" name="telephone" placeholder="Telephone" required>
-                    <label for="floatingTelephone" class="col-form-label">Telephone</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="phoneCode">+356</span>
+                        <input type="number" class="form-control" name="telephone" placeholder="Telephone" required>
+                    </div>
                 </div>
             </fieldset>
             
@@ -36,7 +46,7 @@
                         <label for="floatingStreet" class="col-form-label">Street</label>
                     </div>
 
-                    <div class="form-floating mb-3 col ms-1 me-1">
+                    <div class="form-floating mb-3 col ms-1">
                         <input type="text" class="form-control" id="floatingHouseNo" name="houseNo" placeholder="House No." required>
                         <label for="floatingHouseNo" class="col-form-label">House No.</label>
                     </div>

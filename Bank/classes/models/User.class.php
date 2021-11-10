@@ -41,7 +41,26 @@ class User
     {
         return $this->getName() . " " . $this->getSurname();
     }
+
+    public function getTown(): string
+    {
+        return $this->town;
+    }
     
+    public function getStreetName(): string
+    {
+        return $this->streetName;
+    }
+
+    public function getPostCode(): string
+    {
+        return $this->postCode;
+    }
+    
+    public function getHouse(): string
+    {
+        return $this->house;
+    }
     
     public function getAddress(): string
     {
