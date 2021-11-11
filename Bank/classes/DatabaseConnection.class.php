@@ -2,36 +2,26 @@
 
 class DatabaseConnection
 {
-    private string $username;
-    private string $password;
     private string $host;
     private string $database;
+    private string $username;
+    private string $password;
     private int $port;
-    protected mysqli $mysqli;
     
-    public function __construct(string $username, string $password, string $host, string $database, int $port = 3306)
+    public function __construct(string $username = "root", int $port = 3306)
     {
         $this->username = $username;
-        $this->password = $password;
-        $this->host = $host;
-        $this->database = $database;
+        $this->password = "";
+        $this->host = "localhost";
+        $this->database = "bank";
         $this->port = $port;
     }
     
-    public function connect(): string
+    protected function connect(): PDO
     {
-        $this->mysqli = new mysqli($this->host, $this->username, $this->password, $this->database, $this->port);
-        if ($this->mysqli->connect_errno)
-            return nl2br("Failed to connect to MySQL:\n\n{$this->mysqli->connect_error}");
-        
-        return "Connection Opened";
-    }
-    
-    public function close(): string
-    {
-        if ($this->mysqli->close())
-            return "Connection Closed";
-        
-        return "Error while closing connection";
+        $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->database;";
+        $pdo = new PDO($dsn, $this->username, $this->password);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        return $pdo;
     }
 }

@@ -2,7 +2,7 @@
 
 class User
 {
-    private string $id;
+    private string $password;
     private string $eId;
     private string $name;
     private string $surname;
@@ -11,15 +11,15 @@ class User
     private string $house;
     private string $postCode;
     private string $town;
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
     
     public function get_eId(): string
     {
         return $this->eId;
+    }
+    
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 
     public function getName(): string
@@ -67,10 +67,10 @@ class User
         return nl2br("\n\n$this->house,\n$this->streetName,\n$this->town,\n$this->postCode"); 
     }
     
-    public function __construct(string $id, string $eId, string $name, string $surname, string $telephone, string $streetName, string $house, string $postCode, string $town)
+    public function __construct(string $eId, string $password, string $name, string $surname, string $telephone, string $streetName, string $house, string $postCode, string $town)
     {
-        $this->id = $id;
         $this->eId = $eId;
+        $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
         $this->telephone = $telephone;
