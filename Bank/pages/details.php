@@ -1,11 +1,13 @@
 <?php include "../includes/header.inc.php"; ?>
 
-<body style="background: none;">
+<body>
     <?php
         include "../includes/navbar.inc.php";
         $usersView = new UsersView();
         $user = $usersView->showUser("446102L");
     ?>
+
+    <div id="bgOpacity" class="position-absolute" style="z-index: -1; filter: opacity(30%);"></div>
     
     <div class="container my-3 col-8 offset-2">
         <div class="row g-0 mb-3">

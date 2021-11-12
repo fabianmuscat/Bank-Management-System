@@ -15,7 +15,7 @@
     <div class="container col-8 rounded-3 my-3 p-4 text-dark" id="loginContainer">
         <h1 class="alert-heading mb-3">Register</h1>
 
-        <form action="" method="post">
+        <form action="../includes/register.inc.php" method="post">
             <fieldset class="mb-3">
                 <legend>Personal Details</legend>
                 <div class="row g-0">
@@ -85,7 +85,7 @@
                 </div>
             </fieldset>
 
-            <input type="submit" value="Register" class="btn btn-dark w-100">
+            <input type="submit" value="Register" name="register" class="btn btn-dark w-100">
         </form>
     </div>
 </body>

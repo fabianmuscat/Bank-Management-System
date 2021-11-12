@@ -12,7 +12,7 @@ class UsersTable extends DatabaseConnection
 
     protected function addUser(User $user): bool {
         $eId = $user->get_eId();
-        $password = md5($user->getPassword());
+        $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $name = $user->getName();
         $surname = $user->getSurname();
         $telephone = $user->getTelephone();
@@ -27,6 +27,19 @@ class UsersTable extends DatabaseConnection
         
         if ($insert->rowCount() < 1) return false;
         return true;
+    }
+
+    protected function checkUser(string $eID): bool
+    {
+        $query = "SELECT id FROM users WHERE eId = ?";
+        $stmt = $this->connect()->prepare($query);
+
+        if (!$stmt->execute([$eID])) {
+            $stmt = null;
+            header("Location:../../pages/register.php?error=stmtfailed");
+            die();
+        }
+        return $stmt->rowCount() > 0;
     }
 
     protected function getTownId(string $town): ?int {

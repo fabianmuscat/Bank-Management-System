@@ -13,12 +13,14 @@
         </button>
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav d-flex w-100 justify-content-end">
+            <div class="navbar-nav d-flex w-100 justify-content-start align-items-center">
                 <a class="nav-link" aria-current="page" href="../pages/index.php">Login</a>
                 <a class="nav-link" aria-current="page" href="../pages/register.php">Register</a>
-<!--                <a class="nav-link" aria-current="page" href="#">Logout</a>-->
-                <a class="nav-link" aria-current="page" href="../pages/details.php">Details</a>
-<!--                <a class="nav-link" aria-current="page" href="./index.php">Actions</a>-->
+                <div class="w-100 align-self-center">
+                    <a class="nav-link float-end p-0" aria-current="page" href="../pages/details.php">
+                        <img src="../images/user-default.png" alt="" class="rounded-circle" width="40" height="40">
+                    </a>
+                </div>
             </div>
         </div>
     </div>

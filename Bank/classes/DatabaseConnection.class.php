@@ -8,7 +8,7 @@ class DatabaseConnection
     private string $password;
     private int $port;
     
-    public function __construct(string $username = "root", int $port = 3306)
+    protected function __construct(string $username = "root", int $port = 3306)
     {
         $this->username = $username;
         $this->password = "";

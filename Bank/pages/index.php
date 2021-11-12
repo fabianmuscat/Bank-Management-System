@@ -9,7 +9,7 @@
     <div class="container col-5 rounded-3 p-4" id="loginContainer">
         <h1 class="alert-heading text-center mb-3">Login</h1>
 
-        <form action="" method="post">
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floating_eID" name="eID" placeholder="Name">
                 <label for="floating_eID" class="col-form-label">eID</label>
@@ -20,9 +20,13 @@
                 <label for="floatingPassword" class="col-form-label">Password</label>
             </div>
 
-            <input type="submit" value="Login" class="btn btn-dark w-100">
+            <input type="submit" value="Login" name="login" class="btn btn-dark w-100">
         </form>
     </div>
 </body>
 
 <?php include "../includes/footer.inc.php"; ?>
+
+<!-- Testing Form Post -->
+<?php if (!isset($_POST["login"])) die(); ?>
+<script>alert('<?php echo "Username: $_POST[eID]" ?>\n<?php echo "Password: $_POST[password]"; ?>');</script>
