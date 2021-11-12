@@ -1,6 +1,12 @@
 <?php
+session_start();
 
 if (isset($_POST["register"])) {
+    if (isset($_SESSION["ERROR"])) {
+        echo "<script>alert('$_SESSION[ERROR]');</script>";
+        header("refresh:0;url= ../pages/register.php");
+    }
+    
     // Personal Details
     $firstName = $_POST["name"];
     $lastName = $_POST["surname"];

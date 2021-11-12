@@ -1,4 +1,4 @@
-<?php include "../includes/header.inc.php"; ?>
+<?php  include "../includes/header.inc.php"; ?>
 
 <style>
     input[type="number"] {

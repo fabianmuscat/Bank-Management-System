@@ -39,7 +39,9 @@ class UsersTable extends DatabaseConnection
             header("Location:../../pages/register.php?error=stmtfailed");
             die();
         }
-        return $stmt->rowCount() > 0;
+        
+        if ($stmt->rowCount() < 1) return false;
+        return true;
     }
 
     protected function getTownId(string $town): ?int {
