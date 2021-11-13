@@ -4,7 +4,7 @@
     <?php
         include "../includes/navbar.inc.php";
         $usersView = new UsersView();
-        $user = $usersView->showUser("446102L");
+        $user = $usersView->showUser("564370M");
     ?>
 
     <div id="bgOpacity" class="position-absolute" style="z-index: -1; filter: opacity(30%);"></div>

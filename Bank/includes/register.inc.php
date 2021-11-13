@@ -25,7 +25,7 @@ if (isset($_POST["register"])) {
 
     include_once "../includes/autoloader.inc.php";
     
-    $registerController = new UsersController($firstName, $lastName, $telephone, $street, $house, $postCode, $town, $eID, $password, $confirmation, "fabian");
+    $registerController = new RegisterController($firstName, $lastName, $telephone, $street, $house, $postCode, $town, $eID, $password, $confirmation, "fabian");
     $registerController->register();
     
     header("Location: ../pages/index.php");
