@@ -25,10 +25,11 @@ class UsersTable extends DatabaseConnection
         $house = $user->getHouse();
         $postCode = $user->getPostCode();
         $townId = $this->getTownId($user->getTown());
-        
-        $query = "INSERT INTO users (eId, password, name, surname, telephone, streetName, house, postCode, townId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $image = $user->getImage();
+
+        $query = "INSERT INTO users (eId, password, name, surname, telephone, streetName, house, postCode, townId, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $insert = $this->connect()->prepare($query);
-        $insert->execute([$eId, $password, $name, $surname, $telephone, $street, $house, $postCode, $townId]);
+        $insert->execute([$eId, $password, $name, $surname, $telephone, $street, $house, $postCode, $townId, $image]);
         
         if ($insert->rowCount() < 1) return false;
         return true;

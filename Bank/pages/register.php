@@ -8,7 +8,7 @@
         <div class="col-5 rounded-3 m-4 p-4 text-dark" id="loginContainer">
             <h1 class="alert-heading mb-3">Register</h1>
     
-            <form action="../includes/register.inc.php" method="post">
+            <form action="../includes/register.inc.php" method="post" enctype="multipart/form-data">
                 <fieldset class="mb-3">
                     <legend>Personal Details</legend>
                     <div class="row g-0">
@@ -75,6 +75,11 @@
                             <input type="password" class="form-control" id="floatingConfirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                             <label for="floatingConfirmPassword" class="col-form-label">Confirm Password</label>
                         </div>
+                    </div>
+
+                    <div class="row g-0 mb-3">
+                        <label class="col-form-label">Profile Picture</label>
+                        <input type="file" class="form-control" name="avatar">
                     </div>
                 </fieldset>
     

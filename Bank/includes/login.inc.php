@@ -22,6 +22,7 @@ if (isset($_POST["login"])) {
     $_SESSION['telephone'] = $user->getTelephone();
     $_SESSION['surname'] = $user->getSurname();
     $_SESSION['address'] = $address;
+    $_SESSION["avatar"] = $user->getImage();
 
     unset($_SESSION["ERROR"]);
     header("Location: ../pages/details.php");

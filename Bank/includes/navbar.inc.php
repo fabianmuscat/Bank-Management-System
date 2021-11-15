@@ -2,12 +2,21 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../pages/index.php">
-            <div class="d-flex align-items-center">
-                <i class="bi bi-bank me-2"></i>
-                <span class="m-0">Bank</span>
-            </div>
-        </a>
+        <?php if (!isset($_SESSION['authenticated'])) { ?>
+            <a class="navbar-brand" href="../pages/index.php">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-bank me-2"></i>
+                    <span class="m-0">Bank</span>
+                </div>
+            </a>
+        <?php } else { ?>
+            <a class="navbar-brand" href="../pages/details.php">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-bank me-2"></i>
+                    <span class="m-0">Bank</span>
+                </div>
+            </a>
+        <?php } ?>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +36,11 @@
 
                     <div class="w-100 align-self-center">
                         <a class="nav-link float-end p-0" aria-current="page" href="../pages/details.php">
-                            <img src="../images/user-default.png" alt="" class="rounded-circle" width="36" height="36">
+                            <?php if (empty($_SESSION["avatar"])) { ?>
+                                <img src="../images/user-default.png" alt="" class="rounded-circle" width="36" height="36">
+                            <?php } else { ?>
+                                <img src="<?php echo $_SESSION['avatar']; ?>" alt="Profile Pic" class="rounded-circle" width="36" height="36">
+                            <?php } ?>
                         </a>
                     </div>
                 <?php } ?>

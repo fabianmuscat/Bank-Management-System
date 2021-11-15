@@ -4,7 +4,7 @@ class RegisterController extends UsersTable
 {
     private array $inputs;
 
-    public function __construct(string $firstName, string $lastName, string $telephone, string $street, string $house, string $postCode, string $town, string $eID, string $password, string $confirmation, string $dbUsername = "root", int $port = 3306)
+    public function __construct(string $firstName, string $lastName, string $telephone, string $street, string $house, string $postCode, string $town, string $eID, string $password, string $confirmation, string $image, string $dbUsername = "root", int $port = 3306)
     {
         parent::__construct($dbUsername, $port);
         $this->inputs = [
@@ -17,7 +17,8 @@ class RegisterController extends UsersTable
             "Town" => Utils::capitalize($town),
             "eID" => strtoupper($eID),
             "Password" => $password,
-            "Password Repeat" => $confirmation
+            "Password Repeat" => $confirmation,
+            "Image" => $image
         ];
     }
 
@@ -47,6 +48,11 @@ class RegisterController extends UsersTable
             $_SESSION["ERROR"] = "Invalid Telephone";
             exit();
         }
+        
+        if ($this->checkImage() == false) {
+            $_SESSION["ERROR"] = "Profile picture error";
+            exit();
+        }
 
         $this->addUser(new User(
             $this->inputs["eID"],
@@ -57,7 +63,8 @@ class RegisterController extends UsersTable
             $this->inputs["Street"],
             $this->inputs["House"],
             $this->inputs["Post Code"],
-            $this->inputs["Town"]
+            $this->inputs["Town"],
+            $this->inputs["Image"]
         ));
     }
 
@@ -108,5 +115,14 @@ class RegisterController extends UsersTable
         if (ctype_space($telephone) || ctype_alpha($telephone)) return false;
 
         return true;
+    }
+    
+    private function checkImage(): bool {
+        $image = $this->inputs["Image"];
+        $supported_format = array('jpg','jpeg','png');
+        $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+        
+        if (in_array($ext, $supported_format) == false) return false;
+        return move_uploaded_file($_FILES["avatar"]["tmp_name"], $image);
     }
 }

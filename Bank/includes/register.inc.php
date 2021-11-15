@@ -22,10 +22,12 @@ if (isset($_POST["register"])) {
     $eID = $_POST["eID"];
     $password = $_POST["password"];
     $confirmation = $_POST["confirmPassword"];
+    $avatar = $_POST["avatar"];
+    $image = "../images/profile-pictures/" . $_FILES["avatar"]["name"];
 
     include_once "../includes/autoloader.inc.php";
     
-    $registerController = new RegisterController($firstName, $lastName, $telephone, $street, $house, $postCode, $town, $eID, $password, $confirmation, "fabian");
+    $registerController = new RegisterController($firstName, $lastName, $telephone, $street, $house, $postCode, $town, $eID, $password, $confirmation, $image, "fabian");
     $registerController->register();
     
     unset($_SESSION["ERROR"]);

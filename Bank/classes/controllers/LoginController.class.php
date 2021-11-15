@@ -27,7 +27,8 @@ class LoginController extends UsersTable
             $user["streetName"],
             $user["house"],
             $user["postCode"],
-            $town
+            $town,
+            $user["imagePath"]
         );
     }
 }
