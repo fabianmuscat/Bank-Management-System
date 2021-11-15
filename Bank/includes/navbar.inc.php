@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="../pages/index.php">
             <div class="d-flex align-items-center">
-                <i class="bi bi-piggy-bank me-2"></i>
+                <i class="bi bi-bank me-2"></i>
                 <span class="m-0">Bank</span>
             </div>
         </a>

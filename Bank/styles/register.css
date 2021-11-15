@@ -1,0 +1,16 @@
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    margin: 0;
+}
+
+.rightCol {
+    background-image: url("../images/register.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+#bgOpacity {
+    filter: opacity(50%) !important;
+}
