@@ -4,7 +4,7 @@ class RegisterController extends UsersTable
 {
     private array $inputs;
 
-    public function __construct(string $firstName, string $lastName, string $telephone, string $street, string $house, string $postCode, string $town, string $eID, string $password, string $confirmation, string $dbUsername, int $port = 3306)
+    public function __construct(string $firstName, string $lastName, string $telephone, string $street, string $house, string $postCode, string $town, string $eID, string $password, string $confirmation, string $dbUsername = "root", int $port = 3306)
     {
         parent::__construct($dbUsername, $port);
         $this->inputs = [
@@ -45,7 +45,6 @@ class RegisterController extends UsersTable
 
         if ($this->checkTelephone() == false) {
             $_SESSION["ERROR"] = "Invalid Telephone";
-//            header("Location: ../pages/register.php?error=InvalidTelephone");
             exit();
         }
 

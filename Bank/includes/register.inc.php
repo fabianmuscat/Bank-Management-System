@@ -28,5 +28,6 @@ if (isset($_POST["register"])) {
     $registerController = new RegisterController($firstName, $lastName, $telephone, $street, $house, $postCode, $town, $eID, $password, $confirmation, "fabian");
     $registerController->register();
     
+    unset($_SESSION["ERROR"]);
     header("Location: ../pages/index.php");
 }

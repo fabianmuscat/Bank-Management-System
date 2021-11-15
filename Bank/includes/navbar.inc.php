@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <div class="container-fluid">
         <a class="navbar-brand" href="../pages/index.php">
@@ -14,13 +16,21 @@
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav d-flex w-100 justify-content-start align-items-center">
-                <a class="nav-link" aria-current="page" href="../pages/index.php">Login</a>
-                <a class="nav-link" aria-current="page" href="../pages/register.php">Register</a>
-                <div class="w-100 align-self-center">
-                    <a class="nav-link float-end p-0" aria-current="page" href="../pages/details.php">
-                        <img src="../images/user-default.png" alt="" class="rounded-circle" width="40" height="40">
-                    </a>
-                </div>
+
+                <?php if (!isset($_SESSION['authenticated'])) { ?>
+                    <a class="nav-link" aria-current="page" href="../pages/index.php">Login</a>
+                    <a class="nav-link" aria-current="page" href="../pages/register.php">Register</a>
+                <?php } else { ?>
+                    <form action="../includes/logout.inc.php" method="post" class="position-0 m-0">
+                        <input class="nav-link btn btn-link" aria-current="page" href="../pages/index.php" name="logout" type="submit" value="Logout" />
+                    </form>
+
+                    <div class="w-100 align-self-center">
+                        <a class="nav-link float-end p-0" aria-current="page" href="../pages/details.php">
+                            <img src="../images/user-default.png" alt="" class="rounded-circle" width="36" height="36">
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
