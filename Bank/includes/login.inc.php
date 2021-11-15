@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST["login"])) {
     if (isset($_SESSION["ERROR"])) {
         echo "<script>alert('$_SESSION[ERROR]');</script>";
-        header("refresh:0;url= ../pages/index.php");
+        header("refresh:0;url= ../index.php");
     }
     
     $eId = $_POST["eID"];
@@ -25,5 +25,5 @@ if (isset($_POST["login"])) {
     $_SESSION["avatar"] = $user->getImage();
 
     unset($_SESSION["ERROR"]);
-    header("Location: ../pages/details.php");
+    header("Location: ../views/details.php");
 }

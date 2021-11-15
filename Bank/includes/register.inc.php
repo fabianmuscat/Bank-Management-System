@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST["register"])) {
     if (isset($_SESSION["ERROR"])) {
         echo "<script>alert('$_SESSION[ERROR]');</script>";
-        header("refresh:0;url= ../pages/register.php");
+        header("refresh:0;url= ../views/register.php");
     }
     
     // Personal Details
@@ -31,5 +31,5 @@ if (isset($_POST["register"])) {
     $registerController->register();
     
     unset($_SESSION["ERROR"]);
-    header("Location: ../pages/index.php");
+    header("Location: ../index.php");
 }

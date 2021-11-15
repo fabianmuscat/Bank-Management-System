@@ -42,7 +42,7 @@ class UsersTable extends DatabaseConnection
 
         if (!$stmt->execute([$eID])) {
             $stmt = null;
-            header("Location:../../pages/register.php?error=stmtfailed");
+            header("Location:../../views/register.php?error=stmtfailed");
             die();
         }
         
