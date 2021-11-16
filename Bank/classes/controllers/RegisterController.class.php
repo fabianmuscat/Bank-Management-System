@@ -48,9 +48,10 @@ class RegisterController extends UsersTable
             $_SESSION["ERROR"] = "Invalid Telephone";
             exit();
         }
-        
-        if ($this->checkImage() == false) {
-            $_SESSION["ERROR"] = "Profile picture error";
+
+        $res = $this->checkImage();
+        if (strcmp($res, null) > 0) {
+            $_SESSION["ERROR"] = $res;
             exit();
         }
 
@@ -117,12 +118,16 @@ class RegisterController extends UsersTable
         return true;
     }
     
-    private function checkImage(): bool {
-        $image = $this->inputs["Image"];
-        $supported_format = array('jpg','jpeg','png');
-        $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+    private function checkImage(): ?string {
+        $from = $_FILES["avatar"]["tmp_name"];
+        $to = $this->inputs["Image"];
         
-        if (in_array($ext, $supported_format) == false) return false;
-        return move_uploaded_file($_FILES["avatar"]["tmp_name"], $image);
+        $check = getimagesize($from);
+
+        if ($check == false) return "Not an image";
+        if ($_FILES["avatar"]["size"] > 1_000_000) return "File to large";
+        if (move_uploaded_file($from, $to) == false) return "Not uploaded";
+
+        return null;
     }
 }

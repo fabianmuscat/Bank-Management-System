@@ -4,6 +4,7 @@ session_start();
 if (isset($_POST["register"])) {
     if (isset($_SESSION["ERROR"])) {
         echo "<script>alert('$_SESSION[ERROR]');</script>";
+        unset($_SESSION["ERROR"]);
         header("refresh:0;url= ../views/register.php");
     }
     
@@ -23,7 +24,7 @@ if (isset($_POST["register"])) {
     $password = $_POST["password"];
     $confirmation = $_POST["confirmPassword"];
     $avatar = $_POST["avatar"];
-    $image = "../images/profile-pictures/" . $_FILES["avatar"]["name"];
+    $image = "../images/profile-pictures/{$_FILES['avatar']['name']}";
 
     include_once "../includes/autoloader.inc.php";
     

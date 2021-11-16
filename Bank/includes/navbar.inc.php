@@ -6,21 +6,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <div class="container-fluid">
-        <?php if (!isset($_SESSION['authenticated'])) { ?>
-            <a class="navbar-brand" href="<?php echo $cd; ?>index.php">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-bank me-2"></i>
-                    <span class="m-0">Bank</span>
-                </div>
-            </a>
-        <?php } else { ?>
-            <a class="navbar-brand" href="<?php echo $cd; ?>views/details.php">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-bank me-2"></i>
-                    <span class="m-0">Bank</span>
-                </div>
-            </a>
-        <?php } ?>
+        <a class="navbar-brand" href="<?php echo !isset($_SESSION['authenticated']) ?  $cdViews . "index.php" : $cdViews . "views/details.php"; ?>">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-piggy-bank me-2"></i>
+                <span class="m-0">Bank Management System</span>
+            </div>
+        </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,11 +30,14 @@
                     </form>
 
                     <div class="w-100 align-self-center">
-                        <a class="nav-link float-end p-0" aria-current="page" href="../views/details.php">
+                        <a class="nav-link float-end p-0 d-flex align-items-center justify-content-between" aria-current="page" href="../views/details.php">
+                            <label class="me-2" style="cursor: pointer;">
+                                <?php echo "{$_SESSION['user']->getName()} {$_SESSION['user']->getSurname()}" ?>
+                            </label>
                             <?php if (empty($_SESSION["avatar"])) { ?>
-                                <img src="<?php echo $cdImages; ?>images/user-default.png" alt="" class="rounded-circle" width="36" height="36">
+                                <img src="<?php echo $cdImages; ?>images/user-default.png" alt="" class="rounded-circle" width="38" height="38">
                             <?php } else { ?>
-                                <img src="<?php echo $_SESSION['avatar']; ?>" alt="Profile Pic" class="rounded-circle" width="36" height="36">
+                                <img src="<?php echo $_SESSION['avatar']; ?>" alt="Profile Pic" class="rounded-circle" width="38" height="38">
                             <?php } ?>
                         </a>
                     </div>
