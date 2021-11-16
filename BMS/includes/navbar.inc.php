@@ -25,8 +25,8 @@
                     <a class="nav-link" aria-current="page" href="<?php echo $cdViews; ?>index.php">Login</a>
                     <a class="nav-link" aria-current="page" href="<?php echo $cdViews; ?>views/register.php">Register</a>
                 <?php } else { ?>
-                    <form action="../includes/logout.inc.php" method="post" class="position-0 m-0">
-                        <input class="nav-link btn btn-link" aria-current="page" href="../index.php" name="logout" type="submit" value="Logout" />
+                    <form action="<?php echo $cdViews; ?>includes/logout.inc.php" method="post" class="position-0 m-0">
+                        <input class="nav-link btn btn-link" aria-current="page" href="<?php echo $cdViews; ?>index.php" name="logout" type="submit" value="Logout" />
                     </form>
 
                     <div class="w-100 align-self-center">
