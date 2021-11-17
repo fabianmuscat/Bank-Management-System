@@ -15,7 +15,7 @@ class UsersTable extends DatabaseConnection
         return strcmp($user["password"], $hashedPass) == 0 ? $user : null;
     }
 
-    protected function addUser(User $user): bool {
+    protected function addUser(User $user, $edit = false): bool {
         $eId = $user->get_eId();
         $password = md5($user->getPassword());
         $name = $user->getName();
@@ -27,11 +27,21 @@ class UsersTable extends DatabaseConnection
         $townId = $this->getTownId($user->getTown());
         $image = $user->getImage();
 
-        $query = "INSERT INTO users (eId, password, name, surname, telephone, streetName, house, postCode, townId, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $insert = $this->connect()->prepare($query);
-        $insert->execute([$eId, $password, $name, $surname, $telephone, $street, $house, $postCode, $townId, $image]);
+        if ($edit == false) {
+            $addQuery = "INSERT INTO users (eId, password, name, surname, telephone, streetName, house, postCode, townId, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insert = $this->connect()->prepare($addQuery);
+            $insert->execute([$eId, $password, $name, $surname, $telephone, $street, $house, $postCode, $townId, $image]);
+
+            if ($insert->rowCount() < 1) return false;   
+        } else {
+            $editQuery = "UPDATE users SET name = ?, surname = ?, telephone = ?, streetName = ?, house = ?, postCode = ?, townId = ?, imagePath = ? WHERE eId = ?";
+            
+            $edit = $this->connect()->prepare($editQuery);
+            $edit->execute([$name, $surname, $telephone, $street, $house, $postCode, $townId, $image, $eId]);
+
+            if ($edit->rowCount() < 1) return false;
+        }
         
-        if ($insert->rowCount() < 1) return false;
         return true;
     }
     
@@ -50,6 +60,15 @@ class UsersTable extends DatabaseConnection
         return true;
     }
 
+    protected function deleteUser(string $eID): bool {
+        $query = "DELETE FROM users WHERE eId = ?";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute([$eID]);
+        
+        if ($stmt->rowCount() < 1) return false;
+        return true;
+    }
+    
     protected function getTownId(string $town): ?int {
         $pdo = $this->connect();
         $rowCount = 0;

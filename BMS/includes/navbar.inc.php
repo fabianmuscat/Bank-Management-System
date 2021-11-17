@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<?php echo !isset($_SESSION['authenticated']) ?  $cdViews . "index.php" : $cdViews . "views/details.php"; ?>">
+        <a class="navbar-brand" href="<?php echo !isset($_SESSION['authenticated']) ?  $cdViews . "index.php" : $cdViews . "views/actions.php"; ?>">
             <div class="d-flex align-items-center">
                 <i class="bi bi-piggy-bank me-2"></i>
                 <span class="m-0">Bank Management System</span>
@@ -25,8 +25,9 @@
                     <a class="nav-link" aria-current="page" href="<?php echo $cdViews; ?>index.php">Login</a>
                     <a class="nav-link" aria-current="page" href="<?php echo $cdViews; ?>views/register.php">Register</a>
                 <?php } else { ?>
+                    <a class="nav-link" href="<?php echo $cdViews; ?>views/actions.php">Actions</a>
                     <form action="<?php echo $cdViews; ?>includes/logout.inc.php" method="post" class="position-0 m-0">
-                        <input class="nav-link btn btn-link" aria-current="page" href="<?php echo $cdViews; ?>index.php" name="logout" type="submit" value="Logout" />
+                        <input class="nav-link btn btn-link" aria-current="page" id="logout" href="<?php echo $cdViews; ?>index.php" name="logout" type="submit" value="Logout" />
                     </form>
 
                     <div class="w-100 align-self-center">
@@ -34,10 +35,10 @@
                             <label class="me-2" style="cursor: pointer;">
                                 <?php echo "{$_SESSION['user']->getName()} {$_SESSION['user']->getSurname()}" ?>
                             </label>
-                            <?php if (empty($_SESSION["avatar"])) { ?>
+                            <?php if (empty($_SESSION["user"]->getImage())) { ?>
                                 <img src="<?php echo $cdImages; ?>images/user-default.png" alt="" class="rounded-circle" width="38" height="38">
                             <?php } else { ?>
-                                <img src="<?php echo $_SESSION['avatar']; ?>" alt="Profile Pic" class="rounded-circle" width="38" height="38">
+                                <img src="<?php echo $_SESSION['user']->getImage(); ?>" alt="Profile Pic" class="rounded-circle" width="38" height="38">
                             <?php } ?>
                         </a>
                     </div>

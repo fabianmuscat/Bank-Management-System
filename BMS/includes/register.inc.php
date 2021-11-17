@@ -23,8 +23,7 @@ if (isset($_POST["register"])) {
     $eID = $_POST["eID"];
     $password = $_POST["password"];
     $confirmation = $_POST["confirmPassword"];
-    $avatar = $_POST["avatar"];
-    $image = "../images/profile-pictures/{$_FILES['avatar']['name']}";
+    $image = !empty($_FILES['avatar']['name']) ? "../images/profile-pictures/{$_FILES['avatar']['name']}" : "";
 
     include_once "../includes/autoloader.inc.php";
     

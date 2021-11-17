@@ -19,13 +19,7 @@ if (isset($_POST["login"])) {
     
     $_SESSION['authenticated'] = true;
     $_SESSION['user'] = $user;
-    $_SESSION['eID'] = $user->get_eId();
-    $_SESSION['name'] = $user->getName();
-    $_SESSION['telephone'] = $user->getTelephone();
-    $_SESSION['surname'] = $user->getSurname();
-    $_SESSION['address'] = $address;
-    $_SESSION["avatar"] = $user->getImage();
-
+    
     unset($_SESSION["ERROR"]);
-    header("Location: ../views/details.php");
+    header("Location: ../views/actions.php");
 }

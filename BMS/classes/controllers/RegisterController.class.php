@@ -21,22 +21,31 @@ class RegisterController extends UsersTable
             "Image" => $image
         ];
     }
-
-    public function register() {
+    
+    private function checkInputs($checkForEmptyInputs = true, $checkID = true, $checkPasswords = true, $checkImage = true)
+    {
         session_start();
-        if ($this->areInputsEmpty() == false) {
-            $_SESSION["ERROR"] = "Empty Input";
-            exit();
+        if (empty($this->inputs["Image"])) $checkImage = false;
+        
+        if ($checkForEmptyInputs) {
+            if ($this->areInputsEmpty() == false) {
+                $_SESSION["ERROR"] = "Empty Input";
+                exit();
+            }
         }
 
-        if ($this->checkForValidEId() == false) {
-            $_SESSION["ERROR"] = "Invalid eID";
-            exit();
+        if ($checkID) {
+            if ($this->checkForValidEId() == false) {
+                $_SESSION["ERROR"] = "Invalid eID";
+                exit();
+            }
         }
 
-        if ($this->checkPasswords() == false) {
-            $_SESSION["ERROR"] = "Passwords do not match";
-            exit();
+        if ($checkPasswords) {
+            if ($this->checkPasswords() == false) {
+                $_SESSION["ERROR"] = "Passwords do not match";
+                exit();
+            }
         }
 
         if ($this->checkPostCode() == false) {
@@ -49,12 +58,18 @@ class RegisterController extends UsersTable
             exit();
         }
 
-        $res = $this->checkImage();
-        if (strcmp($res, null) > 0) {
-            $_SESSION["ERROR"] = $res;
-            exit();
+        if ($checkImage) {
+            $res = $this->checkImage();
+            if (strcmp($res, null) > 0) {
+                $_SESSION["ERROR"] = $res;
+                exit();
+            }
         }
-
+    }
+    
+    public function register() {
+        $this->checkInputs();
+        
         $this->addUser(new User(
             $this->inputs["eID"],
             $this->inputs["Password"],
@@ -68,11 +83,28 @@ class RegisterController extends UsersTable
             $this->inputs["Image"]
         ));
     }
+    
+    public function edit() {
+        $this->checkInputs(false, false, false, false);
+        
+        $this->addUser(new User(
+            $this->inputs["eID"],
+            $this->inputs["Password"],
+            $this->inputs["First Name"],
+            $this->inputs["Last Name"],
+            $this->inputs["Telephone"],
+            $this->inputs["Street"],
+            $this->inputs["House"],
+            $this->inputs["Post Code"],
+            $this->inputs["Town"],
+            $this->inputs["Image"]
+        ), true);
+    }
 
     private function areInputsEmpty(): bool
     {
-        foreach ($this->inputs as $input)
-            if (empty($input)) return false;
+        foreach ($this->inputs as $key => $input)
+            if (empty($input) && strcmp($key, "Image") != 0) return false;
         return true;
     }
 
