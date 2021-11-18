@@ -45,8 +45,7 @@
                     <!-- Tabs content -->
                     <div class="tab-content mx-5 mt-2" id="v-pills-tabContent">
                         <div class="tab-pane fade rounded bg-secondary bg-white show active" id="v-pills-amounts">
-                            <h4 class="font-italic mb-4">Amounts</h4>
-                            <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <?php include_once "./amounts.php"; ?>
                         </div>
 
                         <div class="tab-pane fade rounded bg-secondary bg-white" id="v-pills-deposit">
@@ -60,46 +59,7 @@
                         </div>
 
                         <div class="tab-pane fade rounded bg-white" id="v-pills-view-transaction">
-                            <h4 class="font-italic mb-4">Transactions</h4>
-                            <table class="table table-striped table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Paid By</th>
-                                        <th scope="col">Amount</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Groceries</td>
-                                        <td>Convenience Shop Safi</td>
-                                        <td>Nov 17, 2021</td>
-                                        <td>Revolut</td>
-                                        <td>&euro;5.37</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Shopping</td>
-                                        <td>The Stone Market Valletta</td>
-                                        <td>Sep 23, 2021</td>
-                                        <td>Revolut</td>
-                                        <td>&euro;9.50</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Services</td>
-                                        <td>Melita Ltd.</td>
-                                        <td>Nov 4, 2021</td>
-                                        <td>BOV</td>
-                                        <td>&euro;10.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <?php include_once "./transactions.php"; ?>
                         </div>
 
                         <div class="tab-pane fade rounded bg-white" id="v-pills-delete-transaction">

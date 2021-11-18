@@ -5,6 +5,7 @@ spl_autoload_register('autoload_views');
 spl_autoload_register('autoload_controllers');
 spl_autoload_register('autoload_global_models');
 spl_autoload_register('autoload_users');
+spl_autoload_register('autoload_accounts');
 
 function autoload_globals($className) {
     $globalsPath = "../classes/";
@@ -32,6 +33,12 @@ function autoload_views($className) {
 
 function autoload_users($className) {
     $modelsPath = "../classes/models/User/";
+    $extension = ".class.php";
+    include_once $modelsPath . $className . $extension;
+}
+
+function autoload_accounts($className) {
+    $modelsPath = "../classes/models/Account/";
     $extension = ".class.php";
     include_once $modelsPath . $className . $extension;
 }

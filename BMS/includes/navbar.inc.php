@@ -36,9 +36,9 @@
                                 <?php echo "{$_SESSION['user']->getName()} {$_SESSION['user']->getSurname()}" ?>
                             </label>
                             <?php if (empty($_SESSION["user"]->getImage())) { ?>
-                                <img src="<?php echo $cdImages; ?>images/user-default.png" alt="" class="rounded-circle" width="38" height="38">
+                                <img src="<?php echo $cdImages; ?>images/user-default.png" alt="" class="rounded-circle" width="42" height="42">
                             <?php } else { ?>
-                                <img src="<?php echo $_SESSION['user']->getImage(); ?>" alt="Profile Pic" class="rounded-circle" width="38" height="38">
+                                <img src="<?php echo $_SESSION['user']->getImage(); ?>" alt="Profile Pic" class="rounded-circle" width="42" height="42">
                             <?php } ?>
                         </a>
                     </div>
