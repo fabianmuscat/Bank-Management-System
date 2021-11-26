@@ -13,9 +13,9 @@ foreach ($_SESSION['accounts'] as $account)
 </div>
 
 <?php foreach ($_SESSION['accounts'] as $account) { ?>
-    <div class="mb-3">
+    <div class="mb-4">
         <form action="../includes/register.inc.php" method="post">
-            <fieldset class="mb-3">
+            <fieldset>
                 <div class="form-floating mb-3 col">
                     <input type="text" class="form-control fw-bold" id="floatingIban" name="iban" placeholder="IBAN" required readonly value="<?php echo $account->getIban(); ?>">
                     <label for="floatingIban" class="col-form-label">IBAN</label>
@@ -33,7 +33,7 @@ foreach ($_SESSION['accounts'] as $account)
                     </div>
                 </div>
     
-                <div class="form-floating mb-3">
+                <div class="form-floating">
                     <div class="input-group">
                         <span class="input-group-text" id="phoneCode">Balance</span>
                         <input type="text" class="form-control fw-bold" name="balance" placeholder="Balance" required value="&euro;<?php echo $account->getBalance(); ?>" readonly>
