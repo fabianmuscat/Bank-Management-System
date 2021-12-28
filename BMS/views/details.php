@@ -41,14 +41,14 @@
         }
     ?>
 
-    <div class="d-flex">
-        <div class="col-5 rounded-3 m-4 p-4 text-dark" id="loginContainer">
-            <div class="d-flex align-items-center justify-content-between">
+    <div class="d-lg-flex mb-3 mb-lg-0">
+        <div class="col-12 col-lg-5 rounded-3 m-lg-4 p-4 text-dark" id="loginContainer">
+            <div class="d-md-flex d-lg-flex align-items-center justify-content-between">
                 <h1 class="alert-heading mb-3">My Account</h1>
                 
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-primary me-1" id="editDetails">Edit</button>
-                    <button class="btn btn-danger" id="deleteAccount">Delete Account</button>
+                <div class="d-md-flex d-lg-flex align-items-center mb-3 mb-md-0 mb-lg-0">
+                    <button class="btn btn-primary me-1 mb-2 mb-md-0 mb-lg-0 col-12 col-md col-lg" id="editDetails">Edit</button>
+                    <button class="btn btn-danger w-100" id="deleteAccount">Delete Account</button>
                 </div>
             </div>
             
@@ -137,9 +137,13 @@
 
                 <input type="submit" value="Apply Changes" name="editDetails" class="btn btn-dark w-100 d-none" id="applyChanges">
             </form>
+
+            <form action="<?php echo $cdViews; ?>includes/logout.inc.php" method="post" class="position-0 m-0">
+                <input class="btn btn-warning text-white col-12 fs-3 fw-bold" aria-current="page" id="logout" href="<?php echo $cdViews; ?>index.php" name="logout" type="submit" value="Logout" />
+            </form>
         </div>
         
-        <div class="rightCol" id="bgOpacity"></div>
+        <div class="rightCol d-none d-lg-flex" id="bgOpacity"></div>
     </div>
     
     <?php include "../includes/footer.inc.php"; ?>
